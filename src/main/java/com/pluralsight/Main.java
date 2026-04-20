@@ -7,23 +7,25 @@ import java.io.*;
 public class Main {
     static void main() {
         String[] bedtimeStories = {
-                "godilocks.txt",
-                "mary_had_a_little_lamb.txt",
-                "hansel_and_gretel.txt"
+                "src/main/resources/goldilocks.txt",
+                "src/main/resources/mary_had_a_little_lamb.txt",
+                "src/main/resources/hansel_and_gretel.txt"
         };
+        for (String index : bedtimeStories) {
+            System.out.println(index);
+            try {
+            FileReader fileReader = new FileReader(index);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        try {
-//            FileReader godilocks = new FileReader("src/main/resources/goldilocks.txt");
-//            BufferedReader bufferedReader = new BufferedReader(godilocks);
-
-            String input;
-            while((input = bufferedReader.readLine()) != null) {
-                System.out.println(input);
+                String input;
+                while((input = bufferedReader.readLine()) != null) {
+                    System.out.println(input);
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("Sorry, I can't read the file.");
+            } catch (IOException e) {
+                System.err.println("I couldn't find the file");
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Sorry, I can't read the file.");
-        } catch (IOException e) {
-            System.err.println("I couldn't find the file");
         }
     }
 }
