@@ -1,9 +1,8 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
         String[] bedtimeStories = {
@@ -11,15 +10,18 @@ public class Main {
                 "src/main/resources/mary_had_a_little_lamb.txt",
                 "src/main/resources/hansel_and_gretel.txt"
         };
-        for (String index : bedtimeStories) {
-            System.out.println(index);
+        for (String fileName : bedtimeStories) {
+            System.out.println(fileName);
             try {
-            FileReader fileReader = new FileReader(index);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-                String input;
-                while((input = bufferedReader.readLine()) != null) {
-                    System.out.println(input);
+                Scanner scanner = new Scanner(new File(fileName));
+                String line = "";
+                int numOfLines = 0;
+                while (scanner.hasNext()){
+                    for (int i = 0; i < line.length(); i++) {
+                        numOfLines++;
+                    }
+                    line = scanner.nextLine();
+                    System.out.printf("Here's the %s line: %s\n", numOfLines, line);
                 }
             } catch (FileNotFoundException e) {
                 System.out.println("Sorry, I can't read the file.");
